@@ -1,44 +1,52 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { APIKey } from "../../api-key"
-import { json } from "react-router-dom"
+import { Button, Form, FormControl } from "react-bootstrap"
+import { Search } from "../search/Search"
+import { useNavigate } from "react-router-dom"
 
-export const SearchBar = ({ setResults }) => {
+
+export const SearchBar = ({setMovies, movies}) => {
+
     const [searchInput, setSearchInput] = useState("")
+    const [movie, setMovie] = useState()
 
-    const SearchMovies = (value) => {
-        return fetch(`https://api.themoviedb.org/3/search/company?api_key=${APIKey}&query=${searchInput}`)
-            .then(response =>
-                response.json()
-            )
-            .then(r => {
-                //must have r.results to be able to access array in API. First sends back as an object
-                return r.results
+    const navigate = useNavigate()
+    useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${APIKey}`)
+            .then((res) => res.json())
+            .then(data => {
+                setMovie(data.results)
             })
-            .then ((json) => {
-                const results = json.filter((movie) => {
-                    return (value && movie)
-                })
-                setResults(results)
-                console.log(results)
-            })
+    }, []
+    )
+
+    const SearchMovies = async (e) => {
+        e.preventDefault()
+        try {
+            const url = `https://api.themoviedb.org/3/search/movie?api_key=${APIKey}&query=${searchInput}`
+            const res = await fetch(url)
+            const data = await res.json()
+            setMovie(data.results)
+            console.log(data.results)
+        }
+
+        catch (e) {
+            console.log(e)
+        }
     }
 
-    const handleChange = (value) => {
-        setSearchInput(value)
-        SearchMovies(value)
+    const handleChange = (e) => {
+        setSearchInput(e.target.value)
     }
-    
 
-
-    return <div className="search">
-            <div className="searchInputs">
-                <input
-                    type="text"
-                    placeholder="Search Here"
-                    onChange={(e) => handleChange(e.target.value)}
-                    value={searchInput} />
-            </div>
-            <div className="searchResults"></div>
-    
-    </div>
+    return <Form className="d-flex" onSubmit={SearchMovies}>
+        <FormControl
+            type="text"
+            placeholder="Search Movies"
+            className="me-2"
+            aria-label="search"
+            onChange={(e) => handleChange(e)}
+            value={searchInput} />
+        <Button variant="secondary" type="submit">Search</Button>
+    </Form>
 }
