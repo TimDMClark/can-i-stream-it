@@ -4,6 +4,7 @@ import {MovieCard } from "./MovieCard.js"
 import "./Home.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 import { NavigateApp } from "../nav/Navbar"
+import { SearchBar } from "../nav/SearchBar"
 
 export const Movies = () => {
 
@@ -20,7 +21,8 @@ export const Movies = () => {
         
         return (
           <>
-            <NavigateApp setMovies={setMovies} movies={movies} />
+            <NavigateApp />
+            <SearchBar setMovies={setMovies} className="search-bar" />
             <div className="container">
               <div className="grid">
                 {movies.map((movie)=>

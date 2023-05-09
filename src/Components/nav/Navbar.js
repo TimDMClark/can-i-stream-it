@@ -5,13 +5,15 @@ import { Container, Navbar } from "react-bootstrap"
 import { useState } from "react"
 
 
-export const NavigateApp = () => {
-
-    const [movies, setMovies] = useState([])
+export const NavigateApp = ({ setMovies, movies }) => {
 
     const navigate = useNavigate()
     const localMovieUser = localStorage.getItem("movie_user")
     const movieUserObject = JSON.parse(localMovieUser)
+
+    // const handleSearch = (searchResults) => {
+    //     setMovies(searchResults)
+    // }
 
     if (movieUserObject) {
     return (
@@ -19,7 +21,7 @@ export const NavigateApp = () => {
             <Container fluid>
             <Navbar.Brand href="/home">Home</Navbar.Brand>
                 <Navbar.Brand href="/profile">Profile</Navbar.Brand>
-                <SearchBar setMovies={setMovies} movies={movies} />
+                {/* <SearchBar onSearch={handleSearch} /> */}
                 <Navbar.Brand href="/" onClick={() => {
                     localStorage.removeItem("movie_user")
                     navigate("/", {replace: true})

@@ -1,18 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap");
 
-/* img {
-    width: 225px;
-    height: auto;
-    margin: 10px;
-    border: 5px solid gray;
-    border-radius: 1%;
-    filter: drop-shadow(15px 8px 4px black);
-}
-
-h1 {
-    margin-left: 10px;
-} */
-
 body {
     font-family: Source Sans Pro, sans-serif;
     margin: 0;
@@ -20,10 +7,11 @@ body {
     text-decoration: none;
     list-style-type: none;
     outline: none;
+    background-image: url("Background.jpg");
 }
 
 .container {
-    margin: 1em auto;
+    margin: 1em;
     background-color: dimgray;
 }
 
