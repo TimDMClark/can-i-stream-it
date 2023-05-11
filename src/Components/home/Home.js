@@ -24,8 +24,10 @@ export const Movies = () => {
             <div className="container">
             <h1>Popular Movies</h1>
               <div className="grid">
+                <div>
                 {movies.map((movie)=>
                 <MovieCard key={movie.id} {...movie} page="home" />)}
+                </div>
               </div>
             </div>
           </>

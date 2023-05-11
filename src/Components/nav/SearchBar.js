@@ -29,17 +29,13 @@ export const SearchBar = ({ setMovies, page }) => {
     }
 
     return <Form className="search-bar d-flex" onSubmit={handleSearch}>
-        {page !== "profile" ?
         <FormControl
             type="text"
             placeholder="Search Movies"
             className="me-2"
             aria-label="search"
             onChange={(e) => handleChange(e)}
-            value={searchInput} /> 
-            : ""}
-            {page !== "profile" ?
+            value={searchInput} />
         <Button variant="secondary" type="submit">Search</Button>
-        : ""}
     </Form>
 }

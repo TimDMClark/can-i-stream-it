@@ -4,6 +4,7 @@ import { MovieCard } from "../home/MovieCard";
 import { NavigateApp } from "../nav/Navbar";
 import "bootstrap/dist/css/bootstrap.min.css"
 import "./Profile.css"
+import { NavigateProfile } from '../nav/ProfileNavBar';
 
 export const Profile = () => {
 
@@ -25,7 +26,7 @@ export const Profile = () => {
     
     return (
     <>
-      <NavigateApp />
+      <NavigateProfile />
       <div className="container">
       <h1>Profile</h1>
         <div className="grid">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { Modal, Button } from "react-bootstrap"
 import { APIKey } from "../../api-key"
+import { providersFetch } from "../movies/MovieAPIManager"
 
 
 export const MovieCard = ({ id, title, poster_path, overview, release_date, profileFetchId, page }) => {
@@ -51,10 +52,11 @@ export const MovieCard = ({ id, title, poster_path, overview, release_date, prof
         []
     )
 
+    // return fetch(`https://api.themoviedb.org/3/movie/${movie.movieId ? movie.movieId : id}/watch/providers?api_key=${APIKey}`, {
 
-    //! Movie isn't defined until useEffect on line 84, need to find a way to define movie before fetching Provider
+    // ! Movie isn't defined until useEffect on line 84, need to find a way to define movie before fetching Provider
     // const fetchProvider = () => {
-    //     console.log(movie.movieId)
+    //     console.log(movie)
     //     return fetch(`https://api.themoviedb.org/3/movie/${movie.movieId ? movie.movieId : id}/watch/providers?api_key=${APIKey}`, {
     //         method: 'GET',
     //         headers: {
@@ -68,18 +70,6 @@ export const MovieCard = ({ id, title, poster_path, overview, release_date, prof
     //         })
     // }
 
-    // useEffect(
-    //     () => {
-    //         fetchProvider()
-    //             .then((results) => {
-    //                 setProviders(results);
-    //             })
-    //             .catch((error) => {
-    //                 console.log(error);
-    //             });
-    //     },
-    //     []
-    // );
 
     useEffect(() => {
         if(profileFetchId) {
@@ -90,6 +80,22 @@ export const MovieCard = ({ id, title, poster_path, overview, release_date, prof
             })}
         }, [])
 
+        
+    useEffect(
+        () => {
+            // {watchlists.map((singleMovieWatchList) => {
+            //     console.log(singleMovieWatchList)
+                providersFetch(movie, profileFetchId)
+                .then((results) => {
+                    console.log(results)
+                    setProviders(results);
+                })
+            // })}
+                
+        },
+        [movie]
+    );
+
     return (
         <div className="card text-center bg-black mb-3">
             <div className="card-body">
@@ -98,7 +104,7 @@ export const MovieCard = ({ id, title, poster_path, overview, release_date, prof
                     <button type="button" className="btn btn-dark" onClick={handleShow}>View More</button>
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
-                        <Modal.Title>{title}</Modal.Title>
+                        <Modal.Title>{movie.title}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <img className="card-img-top" src={imagePath + movie.poster_path} alt="" />
@@ -106,7 +112,7 @@ export const MovieCard = ({ id, title, poster_path, overview, release_date, prof
                             <br></br>
                             <h6>Overview</h6>
                             <p>{movie.overview}</p>
-                            {/* <h6>Streaming @</h6>
+                            <h6>Streaming @</h6>
                             {providers?.US && providers?.US?.flatrate &&
                                 <ul>
                                     {providers?.US?.flatrate.map((provider, index) => (
@@ -129,7 +135,7 @@ export const MovieCard = ({ id, title, poster_path, overview, release_date, prof
                                         <li key={index}>{provider.provider_name}</li>
                                     ))}
                                 </ul>
-                            } */}
+                            }
                             {page !== "profile" && (
                             <Button
                                 variant={watchlists.some(watchlist => watchlist.movieId === id) ? 'secondary' : 'dark'}

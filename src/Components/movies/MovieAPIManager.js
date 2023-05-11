@@ -49,3 +49,31 @@ export const fetchProvider = (id) => {
             return r.results
         })
 }
+// movie.movieId ? movie.movieId : id
+
+// export async function providersFetch (movie, id) {
+//    const response = await fetch(`https://api.themoviedb.org/3/movie/${movie.movieId ? movie.movieId : id}/watch/providers?api_key=${APIKey}`, {
+//         method: 'GET',
+//         headers: {
+//             accept: 'application/json',
+//         }
+//     })
+//         const movies = await response.json()
+//         const results = await movies.results
+//         return results
+// }
+
+
+export const providersFetch = (movie, id) => {
+    return fetch(`https://api.themoviedb.org/3/movie/${movie.id ? movie.id : id}/watch/providers?api_key=${APIKey}`, {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+        }
+    })
+        .then(response => response.json())
+        .then(r => {
+            // console.log(r)
+            return r.results
+        })
+}
