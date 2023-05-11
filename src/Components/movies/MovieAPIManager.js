@@ -1,5 +1,8 @@
 import { APIKey } from "../../api-key"
 
+const localMovieUser = localStorage.getItem("movie_user")
+const movieUserObject = JSON.parse(localMovieUser)
+
 //fetch call for popular movies 
 export const GetPopularMovies = () => {
     return fetch(`https://api.themoviedb.org/3/movie/popular?api_key=${APIKey}`, {
@@ -19,7 +22,7 @@ export const GetPopularMovies = () => {
 
 // fetch call to post movies to local watchlist
 export const addToWatchlist = () => {
-    return fetch(`https://api.themoviedb.org/3/list/list_item/add_item`, {
+    return fetch(`https://api.themoviedb.org/3/account/${movieUserObject.id}/watchlist`, {
         method: 'POST',
         headers: {
             accept: 'application/json',

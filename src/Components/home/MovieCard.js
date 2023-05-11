@@ -19,15 +19,15 @@ export const MovieCard = ({id, title, poster_path, overview, release_date}) => {
                     <button type="button" className="btn btn-dark" onClick={handleShow}>View More</button>
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
-                            <Modal.Title></Modal.Title>
+                            <Modal.Title>{title}</Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
                             <img className="card-img-top" src={imagePath+poster_path} alt="" />
-                            <h3>{title}</h3>
                             <h4>{release_date}</h4>
                             <br></br>
                             <h6>Overview</h6>
                             <p>{overview}</p>
+                            <button type ="button" className="btn btn-dark">Add To Watchlist</button>
                         </Modal.Body>
                     </Modal>
                 </div>

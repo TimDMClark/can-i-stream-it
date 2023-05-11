@@ -22,6 +22,7 @@ export const Movies = () => {
           <>
             <NavigateApp setMovies={setMovies} movies={movies} />
             <div className="container">
+            <h1>Popular Movies</h1>
               <div className="grid">
                 {movies.map((movie)=>
                 <MovieCard key={movie.id} {...movie} />)}
