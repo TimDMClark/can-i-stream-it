@@ -5,28 +5,17 @@ import { Search } from "../search/Search"
 import { useNavigate } from "react-router-dom"
 
 
-export const SearchBar = ({setMovies, movies}) => {
-
+export const SearchBar = ({ setMovies, page }) => {
+    
     const [searchInput, setSearchInput] = useState("")
-    const [movie, setMovie] = useState()
 
-    const navigate = useNavigate()
-    useEffect(() => {
-        fetch(`https://api.themoviedb.org/3/search/movie?api_key=${APIKey}`)
-            .then((res) => res.json())
-            .then(data => {
-                setMovie(data.results)
-            })
-    }, []
-    )
-
-    const SearchMovies = async (e) => {
+    const handleSearch = async (e) => {
         e.preventDefault()
         try {
             const url = `https://api.themoviedb.org/3/search/movie?api_key=${APIKey}&query=${searchInput}`
             const res = await fetch(url)
             const data = await res.json()
-            setMovie(data.results)
+            setMovies(data.results)
             console.log(data.results)
         }
 
@@ -39,14 +28,18 @@ export const SearchBar = ({setMovies, movies}) => {
         setSearchInput(e.target.value)
     }
 
-    return <Form className="d-flex" onSubmit={SearchMovies}>
+    return <Form className="search-bar d-flex" onSubmit={handleSearch}>
+        {page !== "profile" ?
         <FormControl
             type="text"
             placeholder="Search Movies"
             className="me-2"
             aria-label="search"
             onChange={(e) => handleChange(e)}
-            value={searchInput} />
+            value={searchInput} /> 
+            : ""}
+            {page !== "profile" ?
         <Button variant="secondary" type="submit">Search</Button>
+        : ""}
     </Form>
 }

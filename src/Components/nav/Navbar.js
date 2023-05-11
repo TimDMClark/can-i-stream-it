@@ -5,9 +5,7 @@ import { Container, Navbar } from "react-bootstrap"
 import { useState } from "react"
 
 
-export const NavigateApp = () => {
-
-    const [movies, setMovies] = useState([])
+export const NavigateApp = ({ setMovies }) => {
 
     const navigate = useNavigate()
     const localMovieUser = localStorage.getItem("movie_user")
@@ -19,8 +17,8 @@ export const NavigateApp = () => {
             <Container fluid>
             <Navbar.Brand href="/home">Home</Navbar.Brand>
                 <Navbar.Brand href="/profile">Profile</Navbar.Brand>
-                <SearchBar setMovies={setMovies} movies={movies} />
-                <Navbar.Brand href="/" onClick={() => {
+                <SearchBar setMovies={setMovies}/>
+                <Navbar.Brand className="logout" href="/" onClick={() => {
                     localStorage.removeItem("movie_user")
                     navigate("/", {replace: true})
                     }}>Logout

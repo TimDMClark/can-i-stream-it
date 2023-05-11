@@ -20,43 +20,27 @@ export const GetPopularMovies = () => {
         })
 }
 
-// fetch call to post movies to local watchlist
-export const addToWatchlist = () => {
-    return fetch(`https://api.themoviedb.org/3/account/${movieUserObject.id}/watchlist`, {
-        method: 'POST',
+export const GetMovieDetails= (movie) => {
+    return fetch(`https://api.themoviedb.org/3/movie/${movie.movie_id}`, {
+        method: 'GET',
         headers: {
-            accept: 'application/json',
-            Authorization: `Bearer ${APIKey}`
+        accept: 'application/json',
+        Authorization: `Bearer ${APIKey}`
         }
     })
-        .then(response => response.json())
+        .then(response =>
+            response.json()
+        )
         .then(r => {
             return r.results
         })
 }
 
-// fetch call to remove movies from local watchlist
-export const removeFromWatchlist = () => {
-    return fetch(`https://api.themoviedb.org/3/list/list_item/remove_item`, {
-        method: 'POST',
-        headers: {
-            accept: 'application/json',
-            'content-type': 'application/json',
-            Authorization: `Bearer ${APIKey}`
-        }
-    })
-        .then(response => response.json())
-        .then(r => {
-            return r.results
-        })
-}
-
-export const fetchProvider = () => {
-    return fetch(`https://api.themoviedb.org/3/movie/{movie_id}/watch/providers`, {
+export const fetchProvider = (id) => {
+    return fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            'content-type': 'application/json',
             Authorization: `Bearer ${APIKey}`
         }
     })

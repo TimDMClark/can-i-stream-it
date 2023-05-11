@@ -1,31 +1,19 @@
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700&display=swap");
 
-img {
-    border-radius: 1%;
-    filter: drop-shadow(10px 4px 2px black);
-}
-
-h1 {
-    margin-left: 10px;
-    color: white;
-    filter: drop-shadow(-5px -2px 3px black);
-    text-decoration: underline black;
-    font-family: Source Sans Pro ,sans-serif;
-} 
-
-div {
+body {
     font-family: Source Sans Pro, sans-serif;
     margin: 0;
     padding: 0;
     text-decoration: none;
     list-style-type: none;
     outline: none;
+    /* background-image: url("background.jpg");  */
 }
 
 .container {
-    margin: 1em auto;
-    background-color: dimgray;
+    margin: 1em;
 }
+
 
 .grid {
     display: grid;
@@ -33,4 +21,5 @@ div {
     grid-template-columns: repeat(4,1fr);
     grid-gap: 0.2em;
     justify-content: center;
+    opacity: 95%;
 }

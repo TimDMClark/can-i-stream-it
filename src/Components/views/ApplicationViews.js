@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { Login } from "../auth/Login";
 import { Register } from "../auth/Register";
 import { Movies } from "../home/Home";
-import { Search } from "../search/Search";
+import { Profile } from "../profile/Profile";
 
 function StreamIt() {
   return (
@@ -12,9 +12,8 @@ function StreamIt() {
           <Route>
             <Route path="/" element={<Login />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/movies" element={<Movies />} />
             <Route path="/home" element={<Movies />} /> 
-            <Route path="/searchResults" element={ <Search />} />
+            <Route path="/profile" element={<Profile />} /> 
       </Route>
     </Routes>
     )

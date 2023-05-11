@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { GetPopularMovies } from "../movies/MovieAPIManager"
 import {MovieCard } from "./MovieCard.js"
-import "./Home.css"
-import "bootstrap/dist/css/bootstrap.min.css"
 import { NavigateApp } from "../nav/Navbar"
+import "bootstrap/dist/css/bootstrap.min.css"
+import "./Home.css"
 
 export const Movies = () => {
 
@@ -20,12 +20,12 @@ export const Movies = () => {
         
         return (
           <>
-            <NavigateApp setMovies={setMovies} movies={movies} />
+            <NavigateApp setMovies={setMovies} className="nav-bar" />
             <div className="container">
             <h1>Popular Movies</h1>
               <div className="grid">
                 {movies.map((movie)=>
-                <MovieCard key={movie.id} {...movie} />)}
+                <MovieCard key={movie.id} {...movie} page="home" />)}
               </div>
             </div>
           </>

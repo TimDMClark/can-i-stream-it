@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
     display: flex;
     flex-wrap: nowrap;
     justify-content: left;
@@ -11,5 +11,14 @@
 
 .navbar__logout {
     margin-left: auto;
+} */
+
+.navbar > .container-fluid {
+    justify-content: left;
 }
 
+.logout {
+    display: flex;
+    position: absolute;
+    right: 0%;
+}
