@@ -5,7 +5,7 @@ import { Search } from "../search/Search"
 import { useNavigate } from "react-router-dom"
 
 
-export const SearchBar = ({setMovies}) => {
+export const SearchBar = ({ setMovies, page }) => {
     
     const [searchInput, setSearchInput] = useState("")
 
@@ -28,14 +28,18 @@ export const SearchBar = ({setMovies}) => {
         setSearchInput(e.target.value)
     }
 
-    return <Form className="d-flex" onSubmit={handleSearch}>
+    return <Form className="search-bar d-flex" onSubmit={handleSearch}>
+        {page !== "profile" ?
         <FormControl
             type="text"
             placeholder="Search Movies"
             className="me-2"
             aria-label="search"
             onChange={(e) => handleChange(e)}
-            value={searchInput} />
+            value={searchInput} /> 
+            : ""}
+            {page !== "profile" ?
         <Button variant="secondary" type="submit">Search</Button>
+        : ""}
     </Form>
 }

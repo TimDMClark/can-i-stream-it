@@ -7,13 +7,13 @@ body {
     text-decoration: none;
     list-style-type: none;
     outline: none;
-    background-image: url("Background.jpg");
+    /* background-image: url("background.jpg");  */
 }
 
 .container {
     margin: 1em;
-    background-color: dimgray;
 }
+
 
 .grid {
     display: grid;
@@ -21,4 +21,5 @@ body {
     grid-template-columns: repeat(4,1fr);
     grid-gap: 0.2em;
     justify-content: center;
+    opacity: 95%;
 }

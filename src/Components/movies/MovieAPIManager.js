@@ -1,4 +1,4 @@
-import { APIKey } from "../../api-key"
+import { APIKey, v4APIKey } from "../../api-key"
 
 const localMovieUser = localStorage.getItem("movie_user")
 const movieUserObject = JSON.parse(localMovieUser)
@@ -21,8 +21,8 @@ export const GetPopularMovies = () => {
         })
 }
 
-export const GetMovieDetails= () => {
-    return fetch(`https://api.themoviedb.org/3/movie/{movie_id}`, {
+export const GetMovieDetails= (movie) => {
+    return fetch(`https://api.themoviedb.org/3/movie/${movie.movie_id}`, {
         method: 'GET',
         headers: {
         accept: 'application/json',
@@ -37,13 +37,12 @@ export const GetMovieDetails= () => {
         })
 }
 
-export const fetchProvider = () => {
-    return fetch(`https://api.themoviedb.org/3/movie/{movie_id}/watch/providers`, {
+export const fetchProvider = (id) => {
+    return fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers`, {
         method: 'GET',
         headers: {
             accept: 'application/json',
-            'content-type': 'application/json',
-            Authorization: `Bearer ${APIKey}`
+            Authorization: `Bearer ${v4APIKey}`
         }
     })
         .then(response => response.json())

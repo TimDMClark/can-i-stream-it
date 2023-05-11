@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 import "./Login.css"
+import { Button } from "react-bootstrap";
 
 
 export const Login = () => {
@@ -44,9 +45,9 @@ export const Login = () => {
                             required autoFocus />
                     </fieldset>
                     <fieldset>
-                        <button type="submit">
+                        <Button type="submit">
                             Login
-                        </button>
+                        </Button>
                     </fieldset>
                 </form>
             </section>

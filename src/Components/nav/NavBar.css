@@ -13,3 +13,12 @@
     margin-left: auto;
 } */
 
+.navbar > .container-fluid {
+    justify-content: left;
+}
+
+.logout {
+    display: flex;
+    position: absolute;
+    right: 0%;
+}
